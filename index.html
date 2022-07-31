@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library Project</title>
+    <link href="styles.css" type="text/css" rel="stylesheet" />
+    <script src="script.js" type="text/javascript" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>My Book Library</h1>
+      <form class="book-form" name="book-form">
+        <label for="title">Title</label>
+        <input
+          id="title"
+          name="title"
+          type="text"
+          placeholder="The Stand"
+          required
+        />
+        <label for="author">Author</label>
+        <input
+          id="author"
+          name="author"
+          type="text"
+          placeholder="Stephen King"
+          required
+        />
+        <label for="pages">Number of Pages</label>
+        <input
+          id="pages"
+          name="pages"
+          type="number"
+          min="1"
+          placeholder="1152"
+        />
+        <label for="read">I have read this book</label>
+        <input id="read" name="read" type="checkbox" />
+        <button type="submit">Add Book</button>
+      </form>
+      <table>
+        <colgroup>
+          <col span="4" />
+          <col span="2" class="actions" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Pages</th>
+            <th></th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </body>
+</html>
