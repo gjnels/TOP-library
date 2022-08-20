@@ -114,26 +114,26 @@ function handleFormSubmit(e) {
 
 bookForm.addEventListener("submit", handleFormSubmit);
 
-// dummy data
-addBookToLibrary(
-  new Book({
-    title: "The Fellowship of the Ring",
-    author: "J.R.R. Tolkien",
-    pages: 986,
-    read: true,
-  })
-);
-addBookToLibrary(
-  new Book({
-    title: "The Two Towers",
-    author: "J.R.R. Tolkien",
-    pages: 784,
-  })
-);
-addBookToLibrary(
-  new Book({
-    title: "The Return of the King",
-    author: "J.R.R. Tolkien",
-    pages: 1005,
-  })
-);
+// dummy data for testing
+// addBookToLibrary(
+//   new Book({
+//     title: "The Fellowship of the Ring",
+//     author: "J.R.R. Tolkien",
+//     pages: 986,
+//     read: true,
+//   })
+// );
+// addBookToLibrary(
+//   new Book({
+//     title: "The Two Towers",
+//     author: "J.R.R. Tolkien",
+//     pages: 784,
+//   })
+// );
+// addBookToLibrary(
+//   new Book({
+//     title: "The Return of the King",
+//     author: "J.R.R. Tolkien",
+//     pages: 1005,
+//   })
+// );
