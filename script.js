@@ -8,32 +8,55 @@ const bookForm = document.forms["book-form"];
 // library array to store all Book instances
 const library = [];
 
-// constructor for Book objects
-function Book({ title, author, pages, read }) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = !!read; // if it's present, true, if undefined then false
+class Book {
+  constructor(params) {
+    this.title = params.title;
+    this.author = params.author;
+    this.pages = params.pages;
+    this.read = !!params.read; // if it's present, true, if undefined then false
+  }
+
+  generateButton(index, callback, className, title = className) {
+    const btn = document.createElement("button");
+    btn.textContent = title;
+    btn.classList.add("action", className);
+    btn.dataset.id = index;
+    btn.addEventListener("click", (e) => callback(e.target.dataset.id));
+    return btn;
+  }
+
+  toggleRead() {
+    this.read = !this.read;
+    displayLibrary();
+  }
 }
 
-Book.prototype.generateButton = function (
-  index,
-  callback,
-  className,
-  title = className
-) {
-  const btn = document.createElement("button");
-  btn.textContent = title;
-  btn.classList.add("action", className);
-  btn.dataset.id = index;
-  btn.addEventListener("click", (e) => callback(e.target.dataset.id));
-  return btn;
-};
+// constructor for Book objects
+// function Book({ title, author, pages, read }) {
+//   this.title = title;
+//   this.author = author;
+//   this.pages = pages;
+//   this.read = !!read; // if it's present, true, if undefined then false
+// }
 
-Book.prototype.toggleRead = function () {
-  this.read = !this.read;
-  displayLibrary();
-};
+// Book.prototype.generateButton = function (
+//   index,
+//   callback,
+//   className,
+//   title = className
+// ) {
+//   const btn = document.createElement("button");
+//   btn.textContent = title;
+//   btn.classList.add("action", className);
+//   btn.dataset.id = index;
+//   btn.addEventListener("click", (e) => callback(e.target.dataset.id));
+//   return btn;
+// };
+
+// Book.prototype.toggleRead = function () {
+//   this.read = !this.read;
+//   displayLibrary();
+// };
 
 function removeFromLibrary(index) {
   library.splice(index, 1);
@@ -78,7 +101,7 @@ function displayLibrary() {
     const btns = [
       book.generateButton(
         index,
-        book.toggleRead.bind(book),
+        () => book.toggleRead(),
         "read",
         book.read ? "read" : "not read"
       ),
@@ -109,31 +132,31 @@ function handleFormSubmit(e) {
     e.target.removeAttribute("data-id");
     e.target.querySelector("button").textContent = "Add Book";
     e.target.reset();
-  } else addBookToLibrary(new Book(book));
+  } else addBookToLibrary(book);
 }
 
 bookForm.addEventListener("submit", handleFormSubmit);
 
 // dummy data for testing
-// addBookToLibrary(
-//   new Book({
-//     title: "The Fellowship of the Ring",
-//     author: "J.R.R. Tolkien",
-//     pages: 986,
-//     read: true,
-//   })
-// );
-// addBookToLibrary(
-//   new Book({
-//     title: "The Two Towers",
-//     author: "J.R.R. Tolkien",
-//     pages: 784,
-//   })
-// );
-// addBookToLibrary(
-//   new Book({
-//     title: "The Return of the King",
-//     author: "J.R.R. Tolkien",
-//     pages: 1005,
-//   })
-// );
+addBookToLibrary(
+  new Book({
+    title: "The Fellowship of the Ring",
+    author: "J.R.R. Tolkien",
+    pages: 986,
+    read: true,
+  })
+);
+addBookToLibrary(
+  new Book({
+    title: "The Two Towers",
+    author: "J.R.R. Tolkien",
+    pages: 784,
+  })
+);
+addBookToLibrary(
+  new Book({
+    title: "The Return of the King",
+    author: "J.R.R. Tolkien",
+    pages: 1005,
+  })
+);
